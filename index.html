@@ -6,10 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Page Title</title>
+    <title>Trivia Time</title>
 </head>
 
 <body>
+
+    <header class="container bg-blue mb-5">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 text-center border">
+                High Score: <span id="highScore">none</span>
+                <a href="./scores.html"><button>All Scores</button></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="container bg-white my-5">
+
+        <div class="row">
+
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 border">
+
+                <form class="mb-3" id="passGenForm">
+
+                    <h1>Select Topic(s)</h1>
+
+                    <div class="border" id="topics">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="wantLowercase">
+                            <label class="form-check-label mr-4" for="wantLowercase">Lowercase Letters</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="wantUppercase">
+                            <label class="form-check-label mr-4" for="wantUppercase">Uppercase Letters</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="wantNumbers">
+                            <label class="form-check-label mr-4" for="wantNumbers">Numbers</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="wantSpecialChars">
+                            <label class="form-check-label mr-4" for="wantSpecialChars">Special Characters</label>
+                        </div>
+
+                    </div>
+
+                    <small id="checkboxHelpBlock" class="form-text helpText"></small>
+
+                    <button type="button" class="btn rounded-0 mt-3" id="start">Start Quiz</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container bg-white my-5">
+
+        <div class="row">
+
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 border">
+                <div class="w-100 my-2" id="question">What is the answer to this placeholder question?</div>
+                <div class="my-2"><button id="answerA">Answer A</button></div>
+                <div class="my-2"><button id="answerB">Answer B</button></div>
+                <div class="my-2"><button id="answerC">Answer C</button></div>
+                <div class="my-2"><button id="answerD">Answer D</button></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="assets/scripts/quiz_questions/coding.js"></script>
+    <script src="assets/scripts/quiz_questions/geography.js"></script>
+    <script src="assets/scripts/script.js"></script>
 
 </body>
 
