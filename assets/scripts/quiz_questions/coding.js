@@ -1,4 +1,9 @@
-var questions = [
+var coding = {
+    name: "Web Development",
+    questions: codingQuestions
+}
+
+var codingQuestions = [
 
     {
         title: "Which of the following is NOT a way to insert CSS?",
@@ -37,7 +42,7 @@ var questions = [
     },
 
     {
-        title: "What is the correct order of the components of the box model?"
+        title: "What is the correct order of the components of the box model?",
         choices: ["content, border, padding, margin", "content, margin, border, padding", "content, padding, margin, border", "content, padding, border, margin"],
         answer: "content, padding, border, margin"
     },

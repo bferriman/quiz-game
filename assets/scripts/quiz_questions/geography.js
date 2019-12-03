@@ -1,4 +1,9 @@
-var questions = [
+var geography = {
+    name: "Geography",
+    questions: geographyQuestions
+}
+
+var geographyQuestions = [
 
     {
         title: "Which of the following countries is on the Iberian Peninsula?",
