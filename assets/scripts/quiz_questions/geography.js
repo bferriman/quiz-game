@@ -1,8 +1,3 @@
-var geography = {
-    name: "Geography",
-    questions: geographyQuestions
-}
-
 var geographyQuestions = [
 
     {
@@ -66,3 +61,8 @@ var geographyQuestions = [
     }
     
 ];
+
+var geography = {
+    name: "Geography",
+    questions: geographyQuestions
+}

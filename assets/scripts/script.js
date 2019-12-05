@@ -29,7 +29,75 @@ for (var i = 0; i < topics.length; i++) {  //populate topics element with conten
     topicEl.appendChild(divEl);
 }
 
-startEl.addEventListener("click", function(event) {
+startEl.addEventListener("click", function(event) {  //listener for start button click
     event.preventDefault();
+
+    var helpEl = document.querySelector("#topicsHelpBlock");
+    helpEl.textContent = "";
+
+    var selectedTopics = [];
+    var formInput = document.querySelector("#topicSelectForm");
+    
+    for (var i = 0; i < formInput.length; i++) {  //build array of selected topics
+        console.log("Iteration #" + (i+1));
+        if (formInput[i].checked) {
+            selectedTopics.push(topics[i]);
+        }
+    }
+
+    if (selectedTopics.length === 0) {  //print error message to user
+        console.log("Nothing was selected");
+        helpEl.textContent = "Choose one or more topics";
+    }
+
+    else {  //call function to run quiz
+        console.log("Let's run a quiz!");
+        for (var i = 0; i < selectedTopics.length; i++) {
+            console.log(selectedTopics[i].name);
+        }
+        var quiz = generateQuiz(selectedTopics);
+        runQuiz(quiz);
+    }
 });
+
+
+function generateQuiz(selTopics) {
+
+    //generate array of questions to be asked
+
+    var quiz = [];  //this is our quiz - an array of question objects - starts empty
+
+    var numTopics = selTopics.length;
+
+    var topicCopies = [];  //want copies of the topic objects so that the originals are not altered by subsequent code
+
+    for (var i = 0; i < numTopics; i++) {  //make the copies
+        topicCopies[i] = JSON.parse(JSON.stringify(selTopics[i]));
+    }    
+
+    for (var i = 0; i < 10; i++) {  //make a quiz of 10 questions
+        var tempTopic = topicCopies[i % numTopics];  //alternate taking questions from each selected topic
+        var tempIndex = Math.floor(Math.random() * tempTopic.questions.length);
+        quiz[i] = tempTopic.questions[tempIndex];
+        tempTopic.questions.splice(tempIndex, 1);  //remove the question so it can't be randomly selected more than once
+    }
+
+    quiz.sort(function(a, b){return 0.5 - Math.random()});  //randomize order of questions
+
+    //testing output to check results of quiz generation - can be removed later
+    console.log("Now we have a quiz of " + quiz.length + " questions");
+    for (var i = 0; i < quiz.length; i++) {
+        console.log(quiz[i].title);
+    }
+
+    return quiz;
+
+}
+
+function runQuiz(quiz) {
+    
+    console.log("runQuiz function has been called");
+    
+    
+}
 

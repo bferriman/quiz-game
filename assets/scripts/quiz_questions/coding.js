@@ -1,8 +1,3 @@
-var coding = {
-    name: "Web Development",
-    questions: codingQuestions
-}
-
 var codingQuestions = [
 
     {
@@ -66,3 +61,8 @@ var codingQuestions = [
     }
 
 ];
+
+var coding = {
+    name: "Web Development",
+    questions: codingQuestions
+}
