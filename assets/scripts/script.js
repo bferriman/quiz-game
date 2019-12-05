@@ -6,6 +6,8 @@ var topicEl = document.querySelector("#topics");
 var startEl = document.querySelector("#start");
 var questionEl = document.querySelector("#question");
 var answerDivEl = document.querySelector("#answers");
+var correctAudioEl = document.querySelector("#correctChime");
+var incorrectAudioEl = document.querySelector("#incorrectChime");
 
 var topics = [coding, geography];
 
@@ -128,6 +130,10 @@ function runQuiz(quiz) {
             if(element.textContent !== quiz[index].answer) {  //if answer is wrong, decrement timer by 15 sec
                 timer -= 15;
                 timerEl.textContent = timer;
+                incorrectAudioEl.play();
+            }
+            else {
+                correctAudioEl.play();
             }
             
             if(index === (quiz.length - 1)){  //if this is the last question, end game
@@ -165,7 +171,7 @@ function endGame(newScore) {
     console.log(scoresStr);
     var scoresArr = [];
     if(scoresStr !== null) {
-        var scoresArr = JSON.parse(scoresStr);
+        scoresArr = JSON.parse(scoresStr);
     }
     var newScoreObj = {
         initials: newInitials,
