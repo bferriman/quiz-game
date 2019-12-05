@@ -1,11 +1,11 @@
 var topicSelectEl = document.querySelector("#topicSelectSection");
 var quizEl = document.querySelector("#quizSection");
 var highScoreEl = document.querySelector("#highScore");
+var timerEl = document.querySelector("#timer");
 var topicEl = document.querySelector("#topics");
 var startEl = document.querySelector("#start");
 var questionEl = document.querySelector("#question");
 var answerDivEl = document.querySelector("#answers");
-
 
 var topics = [coding, geography];
 
@@ -59,7 +59,7 @@ startEl.addEventListener("click", function(event) {  //listener for start button
         topicSelectEl.setAttribute("class", "container bg-white my-5 d-none");  //hide topic select section
         quizEl.setAttribute("class", "container bg-white my-5");  //show quiz section
 
-        runQuiz(quiz, 0);
+        runQuiz(quiz);
     }
 });
 
@@ -97,27 +97,84 @@ function generateQuiz(selTopics) {
 
 }
 
-function runQuiz(quiz, index) {
+function runQuiz(quiz) {
     
     console.log("runQuiz function has been called");
 
-    questionEl.textContent = quiz[index].title;
+    var timer = 150;
+    timerEl.textContent = timer;
+
+    var timerInterval = setInterval(function() {  //start timer
+
+        timer--;
+        timerEl.textContent = timer;  //update timer display
+
+        if (timer <= 0) {
+            clearInterval(timerInterval);
+            endGame(0);
+        }
+
+    }, 1000);
+
+    index = 0;
+
+    printQuestion(quiz, index);
+
+    answerDivEl.addEventListener("click", function(event){
+
+        var element = event.target;
+        if (element.matches("button") === true) {
+            console.log("answer submitted");
+            if(element.textContent !== quiz[index].answer) {  //if answer is wrong, decrement timer by 15 sec
+                timer -= 15;
+                timerEl.textContent = timer;
+            }
+            
+            if(index === (quiz.length - 1)){  //if this is the last question, end game
+                clearInterval(timerInterval);
+                endGame(timer);
+            }
+            else {
+                index++;
+                printQuestion(quiz, index);
+            }
+        }
+    });
+}
+
+function printQuestion(quiz, index) {
+
+    questionEl.textContent = quiz[index].title;  //display question
 
     answerDivEl.innerHTML = "";
 
-    for (var i = 0; i < 4; i++) {  //create answer buttons with event listeners
+    for (var i = 0; i < 4; i++) {  //create answer buttons
         var div = document.createElement("div");
         div.setAttribute("class", "my-2");
         var button = document.createElement("button");
         button.textContent = quiz[index].choices[i];
-        button.addEventListener("click", function(event) {
-            event.preventDefault();
-
-            runQuiz(quiz, index + 1);
-        });
         div.appendChild(button);
         answerDivEl.appendChild(div);
     }
-
 }
 
+function endGame(newScore) {
+    console.log("Your score is: " + newScore);
+    var newInitials = prompt("Great Job! Enter your initials:");
+    var scoresStr = localStorage.getItem("scores");
+    console.log(scoresStr);
+    var scoresArr = [];
+    if(scoresStr !== null) {
+        var scoresArr = JSON.parse(scoresStr);
+    }
+    var newScoreObj = {
+        initials: newInitials,
+        score: newScore
+    };
+    scoresArr.push(newScoreObj);
+    scoresArr.sort(function(a, b) {  //sort in descending order
+        return Number(b.score) - Number(a.score);
+    });
+    scoresStr = JSON.stringify(scoresArr);
+    localStorage.setItem("scores", scoresStr);
+}
