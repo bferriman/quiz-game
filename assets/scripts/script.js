@@ -1,11 +1,11 @@
+var topicSelectEl = document.querySelector("#topicSelectSection");
+var quizEl = document.querySelector("#quizSection");
 var highScoreEl = document.querySelector("#highScore");
 var topicEl = document.querySelector("#topics");
 var startEl = document.querySelector("#start");
 var questionEl = document.querySelector("#question");
-var answerElA = document.querySelector("#answerA");
-var answerElB = document.querySelector("#answerB");
-var answerElC = document.querySelector("#answerC");
-var answerElD = document.querySelector("#answerD");
+var answerDivEl = document.querySelector("#answers");
+
 
 var topics = [coding, geography];
 
@@ -56,7 +56,10 @@ startEl.addEventListener("click", function(event) {  //listener for start button
             console.log(selectedTopics[i].name);
         }
         var quiz = generateQuiz(selectedTopics);
-        runQuiz(quiz);
+        topicSelectEl.setAttribute("class", "container bg-white my-5 d-none");  //hide topic select section
+        quizEl.setAttribute("class", "container bg-white my-5");  //show quiz section
+
+        runQuiz(quiz, 0);
     }
 });
 
@@ -94,10 +97,27 @@ function generateQuiz(selTopics) {
 
 }
 
-function runQuiz(quiz) {
+function runQuiz(quiz, index) {
     
     console.log("runQuiz function has been called");
-    
-    
+
+    questionEl.textContent = quiz[index].title;
+
+    answerDivEl.innerHTML = "";
+
+    for (var i = 0; i < 4; i++) {  //create answer buttons with event listeners
+        var div = document.createElement("div");
+        div.setAttribute("class", "my-2");
+        var button = document.createElement("button");
+        button.textContent = quiz[index].choices[i];
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            runQuiz(quiz, index + 1);
+        });
+        div.appendChild(button);
+        answerDivEl.appendChild(div);
+    }
+
 }
 
