@@ -32,7 +32,7 @@ This site uses [Bootstrap 4](https://getbootstrap.com/) (copyright 2019 Twitter)
 The sounds used were downloaded from [freesound.org](https://freesound.org).  Specifically:
 [Raclure's "Loading Chime"](https://freesound.org/people/Raclure/sounds/405546/)
 and
-[Psykoosiossi's "Chime"](https://freesound.org/people/Psykoosiossi/sounds/398661/)(sound for incorrect answers)
+[Psykoosiossi's "Chime"](https://freesound.org/people/Psykoosiossi/sounds/398661/)
 
 ## Reference Sources Used
 
