@@ -16,6 +16,12 @@ var topics = [coding, geography];
 
 topicEl.innerHTML = "";  //clear the topics element
 
+var storedScoresStr = localStorage.getItem("scores");
+if(storedScoresStr !== null) {
+    var storedScoresArr = JSON.parse(storedScoresStr);
+    highScoreEl.textContent = storedScoresArr[0].score;
+}
+
 for (var i = 0; i < topics.length; i++) {  //populate topics element with contents of topics array
     var topicName = topics[i].name;
 
