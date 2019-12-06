@@ -1,9 +1,12 @@
 var topicSelectEl = document.querySelector("#topicSelectSection");
 var quizEl = document.querySelector("#quizSection");
+var initialsEl = document.querySelector("#initialsInput");
 var highScoreEl = document.querySelector("#highScore");
 var timerEl = document.querySelector("#timer");
 var topicEl = document.querySelector("#topics");
 var startEl = document.querySelector("#start");
+var initSubEl = document.querySelector("#submitInitials");
+var inits = document.querySelector("#initials");
 var questionEl = document.querySelector("#question");
 var answerDivEl = document.querySelector("#answers");
 var correctAudioEl = document.querySelector("#correctChime");
@@ -41,22 +44,16 @@ startEl.addEventListener("click", function(event) {  //listener for start button
     var formInput = document.querySelector("#topicSelectForm");
     
     for (var i = 0; i < formInput.length; i++) {  //build array of selected topics
-        console.log("Iteration #" + (i+1));
         if (formInput[i].checked) {
             selectedTopics.push(topics[i]);
         }
     }
 
     if (selectedTopics.length === 0) {  //print error message to user
-        console.log("Nothing was selected");
         helpEl.textContent = "Choose one or more topics";
     }
 
     else {  //call function to run quiz
-        console.log("Let's run a quiz!");
-        for (var i = 0; i < selectedTopics.length; i++) {
-            console.log(selectedTopics[i].name);
-        }
         var quiz = generateQuiz(selectedTopics);
         topicSelectEl.setAttribute("class", "container bg-white my-5 d-none");  //hide topic select section
         quizEl.setAttribute("class", "container bg-white my-5");  //show quiz section
@@ -89,20 +86,12 @@ function generateQuiz(selTopics) {
 
     quiz.sort(function(a, b){return 0.5 - Math.random()});  //randomize order of questions
 
-    //testing output to check results of quiz generation - can be removed later
-    console.log("Now we have a quiz of " + quiz.length + " questions");
-    for (var i = 0; i < quiz.length; i++) {
-        console.log(quiz[i].title);
-    }
-
     return quiz;
 
 }
 
 function runQuiz(quiz) {
     
-    console.log("runQuiz function has been called");
-
     var timer = 150;
     timerEl.textContent = timer;
 
@@ -126,7 +115,6 @@ function runQuiz(quiz) {
 
         var element = event.target;
         if (element.matches("button") === true) {
-            console.log("answer submitted");
             if(element.textContent !== quiz[index].answer) {  //if answer is wrong, decrement timer by 15 sec
                 timer -= 15;
                 timerEl.textContent = timer;
@@ -165,22 +153,32 @@ function printQuestion(quiz, index) {
 }
 
 function endGame(newScore) {
-    console.log("Your score is: " + newScore);
-    var newInitials = prompt("Great Job! Enter your initials:");
-    var scoresStr = localStorage.getItem("scores");
-    console.log(scoresStr);
-    var scoresArr = [];
-    if(scoresStr !== null) {
-        scoresArr = JSON.parse(scoresStr);
-    }
-    var newScoreObj = {
-        initials: newInitials,
-        score: newScore
-    };
-    scoresArr.push(newScoreObj);
-    scoresArr.sort(function(a, b) {  //sort in descending order
-        return Number(b.score) - Number(a.score);
+    quizEl.setAttribute("class", "container bg-white my-5 d-none");  //show quiz section
+    initialsEl.setAttribute("class", "container bg-white my-5");  //show initials input
+
+    initSubEl.addEventListener("click", function(event) {  //listener for start button click
+        // event.preventDefault();
+    
+        var newInitials = inits.value;
+    
+        if (newInitials !== null) {
+            var scoresStr = localStorage.getItem("scores");
+            var scoresArr = [];
+            if(scoresStr !== null) {
+                scoresArr = JSON.parse(scoresStr);
+            }
+            var newScoreObj = {
+                initials: newInitials,
+                score: newScore
+            };
+            scoresArr.push(newScoreObj);
+            scoresArr.sort(function(a, b) {  //sort in descending order
+                return Number(b.score) - Number(a.score);
+            });
+            scoresStr = JSON.stringify(scoresArr);
+            localStorage.setItem("scores", scoresStr);
+        }
+    
     });
-    scoresStr = JSON.stringify(scoresArr);
-    localStorage.setItem("scores", scoresStr);
 }
+
