@@ -1,6 +1,8 @@
 # quiz-game
 A website for taking quizzes that saves high scores locally
 
+Check out the [deployed page](https://bferriman.github.io/quiz-game/)!
+
 ## Description
 
 This page lets users take a quiz.  They can choose one or more of the available topics, and a ten-question quiz will be dynamically generated from the available questions in those topics.
@@ -19,8 +21,6 @@ Takes players initials as input and saves scores in local storage.
 
 ## Opportunities For Further Development
 
-The page desperately needs CSS styling.  I just ran out of time on this.  I intend to work on this over the next day or two.
-
 I would love to add more topics/questions.  The code was written to allow for more to be introduced in a pretty seamless way.  Adding a topic just requires creating the js file with the question data, linking the file in HTML, and adding the name of the topic to the main topics array in script.js.
 
 There is very little feedback to the player currently when they submit an answer to indicate whether their answer was correct or not. At present there is only the audio cues and the timer getting docked 15 seconds (or not).
@@ -33,6 +33,8 @@ The sounds used were downloaded from [freesound.org](https://freesound.org).  Sp
 [Raclure's "Loading Chime"](https://freesound.org/people/Raclure/sounds/405546/)
 and
 [Psykoosiossi's "Chime"](https://freesound.org/people/Psykoosiossi/sounds/398661/)
+
+Color scheme chosen with the help of [Colormind](http://colormind.io/).
 
 ## Reference Sources Used
 
