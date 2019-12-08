@@ -12,7 +12,7 @@ var answerDivEl = document.querySelector("#answers");
 var correctAudioEl = document.querySelector("#correctChime");
 var incorrectAudioEl = document.querySelector("#incorrectChime");
 
-var topics = [coding, geography];
+var topics = [coding, geography, science];
 
 topicEl.innerHTML = "";  //clear the topics element
 

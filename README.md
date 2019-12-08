@@ -23,6 +23,8 @@ Takes players initials as input and saves scores in local storage.
 
 I would love to add more topics/questions.  The code was written to allow for more to be introduced in a pretty seamless way.  Adding a topic just requires creating the js file with the question data, linking the file in HTML, and adding the name of the topic to the main topics array in script.js.
 
+I would also like for multiple choice answers for each question to be presented in a randomized order.
+
 There is very little feedback to the player currently when they submit an answer to indicate whether their answer was correct or not. At present there is only the audio cues and the timer getting docked 15 seconds (or not).
 
 ## Credits
@@ -39,6 +41,8 @@ Color scheme chosen with the help of [Colormind](http://colormind.io/).
 ## Reference Sources Used
 
 [w3schools.com](https://www.w3schools.com/)
+
+[wikipedia.org](https://en.wikipedia.org/wiki/Main_Page)
 
 ## License
 
