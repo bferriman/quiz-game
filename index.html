@@ -9,35 +9,37 @@
     <title>Trivia Time</title>
 </head>
 
-<body>
+<body class="bg-white">
 
-    <header class="container bg-blue mb-5">
+    <header class="container text-milk text-size-24 mb-5">
         <div class="row">
             <div class="col-lg-2"></div>
-            <div class="col-lg-8 text-center border">
-                High Score: <span id="highScore">none</span>
-                <a href="./scores.html"><button>All Scores</button></a>
-                Time: <span id="timer"></span>
+            <div class="col-lg-8 text-center bg-fog">
+                <span>High Score: <span id="highScore">none</span></span>
+                <a href="./scores.html"><button class="btn rounded-0 bg-milk float-right">All Scores</button></a>
+                <div class="float-sm-left">Time: <span id="timer"></span></div>
             </div>
         </div>
     </header>
 
-    <section id="topicSelectSection" class="container bg-white my-5">
+    <section id="topicSelectSection" class="container my-5">
 
         <div class="row">
 
             <div class="col-lg-2"></div>
-            <div class="col-lg-8 border">
+            <div class="col-lg-8">
 
-                <form class="mb-3" id="topicSelectForm">
+                <form class="row" id="topicSelectForm">
 
-                    <h1>Select Topic(s)</h1>
+                    <div class="col-md-6 bg-fog text-center">
+                        <h2 class="text-milk my-3">Select Topic(s)</h2>
+                        <small id="topicsHelpBlock" class="form-text helpText"></small>
+                        <button type="button" class="btn rounded-0 text-milk bg-clay my-3" id="start">Start Quiz</button>
+                    </div>
 
-                    <div class="border" id="topics"></div>
-
-                    <small id="topicsHelpBlock" class="form-text helpText"></small>
-
-                    <button type="button" class="btn rounded-0 mt-3" id="start">Start Quiz</button>
+                    <div class="col-md-6 bg-milk">
+                        <div id="topics" class="my-3"></div>
+                    </div>
 
                 </form>
 
@@ -52,8 +54,8 @@
         <div class="row">
 
             <div class="col-lg-2"></div>
-            <div class="col-lg-8 border">
-                <div class="w-100 my-2" id="question"></div>
+            <div class="col-lg-8 bg-milk">
+                <div class="w-100 text-center my-4" id="question"></div>
                 <div id="answers"></div>
             </div>
 
@@ -64,16 +66,16 @@
     <section id="initialsInput" class="container bg-white my-5 d-none">
         <div class="row">
             <div class="col-lg-2"></div>
-            <div class="col-lg-8 border">
+            <div class="col-lg-8 bg-milk">
 
                 <form class="mb-3">
 
                     <div class="form-group">
-                        <label for="initials">Enter Your Initials!</label>
+                        <label class="text-size-24" for="initials">Enter Your Initials!</label>
                         <input type="text" class="form-control rounded-0" id="initials">
                     </div>
 
-                    <button type="submit" class="btn rounded-0 mt-3" id="submitInitials">Submit</button>
+                    <button type="submit" class="btn rounded-0 bg-clay text-milk mt-3" id="submitInitials">Submit</button>
 
                 </form>
 

@@ -26,9 +26,9 @@ for (var i = 0; i < topics.length; i++) {  //populate topics element with conten
     var topicName = topics[i].name;
 
     var divEl = document.createElement("div");
-    divEl.setAttribute("class", "form-check");
+    divEl.setAttribute("class", "form-check my-1");
     var inputEl = document.createElement("input");
-    inputEl.setAttribute("class", "form-check-input");
+    // inputEl.setAttribute("class", "form-check-input");
     inputEl.setAttribute("type", "checkbox");
     inputEl.setAttribute("id", topicName);
     var labelEl = document.createElement("label");
@@ -48,10 +48,12 @@ startEl.addEventListener("click", function(event) {  //listener for start button
 
     var selectedTopics = [];
     var formInput = document.querySelector("#topicSelectForm");
+    console.log(formInput.length);
+    console.log(formInput);
     
     for (var i = 0; i < formInput.length; i++) {  //build array of selected topics
         if (formInput[i].checked) {
-            selectedTopics.push(topics[i]);
+            selectedTopics.push(topics[i - 1]);
         }
     }
 
@@ -60,6 +62,7 @@ startEl.addEventListener("click", function(event) {  //listener for start button
     }
 
     else {  //call function to run quiz
+        console.log(selectedTopics);
         var quiz = generateQuiz(selectedTopics);
         topicSelectEl.setAttribute("class", "container bg-white my-5 d-none");  //hide topic select section
         quizEl.setAttribute("class", "container bg-white my-5");  //show quiz section
@@ -152,6 +155,7 @@ function printQuestion(quiz, index) {
         var div = document.createElement("div");
         div.setAttribute("class", "my-2");
         var button = document.createElement("button");
+        button.setAttribute("class", "btn rounded-0 text-milk bg-clay w-100");
         button.textContent = quiz[index].choices[i];
         div.appendChild(button);
         answerDivEl.appendChild(div);
